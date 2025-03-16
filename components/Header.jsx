@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, FlatList, StyleSheet, Text } from "react-native";
 
-export default function Header({}) {
+export default function Header({countTable, updateCountTable, setAddTaskMenuVisibility}) {
     const [editing, setEditing] = useState(false);
 
     const toggleEdit = () => {
@@ -9,11 +9,15 @@ export default function Header({}) {
         else setEditing(false)
     }
 
+    const openAddTaskMenu = () => {
+        setAddTaskMenuVisibility(true)
+    }
+
     return (
         <View style={styles.header}>
             <Text style={styles.text} onPress={toggleEdit}>{editing ? 'Done' : 'Edit'}</Text>
             <Text style={styles.text}>Count It</Text>
-            <Text style={styles.text}>+   </Text>
+            <Text style={styles.text} onPress={openAddTaskMenu}>+   </Text>
         </View>
     )
 }
